@@ -1,32 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
-<style>
+<script>
+import store1 from '@/store'
+export default {
+  name: 'App',
+  mounted () {
+    const isDarkMode = store1.getters.getIsDarkMode
+    document.body.style.background = isDarkMode ? '#212c4f' : '#f0f3f5'
+  }
+}
+</script>
+
+<style lang="scss">
+@import "src/assets/colors.scss";
+@import "src/assets/typography.scss";
+body {
+  background: $dark-blue;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $white;
+  // background: $dark-blue;
+  height: 100vh;
 }
 
-#nav {
-  padding: 30px;
+h1 {
+  @include headings-1;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+p {
+  @include large-text;
 }
 </style>
