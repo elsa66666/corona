@@ -29,7 +29,7 @@ const mutations1 = {
       window.localStorage.setItem('isDarkMode', 'false')
     } else {
       state1.isDarkMode = true
-      document.body.style.background = '#211c4f'
+      document.body.style.background = '#222e4e'
       window.localStorage.setItem('isDarkMode', 'true')
     }
   }

@@ -36,8 +36,8 @@ line {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $page-highlighted;
-  // background: $dark-blue;
-  height: 200vh;
+  background: $dark-blue;
+  height: 105vh;
 }
 
 h1 {
