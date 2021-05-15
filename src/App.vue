@@ -18,6 +18,10 @@ export default {
 <style lang="scss">
 @import "src/assets/colors.scss";
 @import "src/assets/typography.scss";
+@import "~animate.css";
+* {
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 body {
   background: $dark-blue;
 }
@@ -38,5 +42,21 @@ h1 {
 
 p {
   @include large-text;
+}
+
+// theme
+.light-background {
+  background-color: $light-gray;
+}
+
+.light-text {
+  color: $white;
+}
+
+.dark-background {
+  background-color: $dark-blue;
+}
+.dark-text {
+  color: $black;
 }
 </style>
