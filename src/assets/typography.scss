@@ -5,28 +5,29 @@ Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
 @import "colors";
 
-@mixin headings-1($color: $white) {
+@mixin headings-1($color: white) {
   font-size: 80px;
   line-height: 86px;
   font-weight: bold;
   color: $color;
+  text-align: start;
 }
 
-@mixin headings-2($color: $white) {
+@mixin headings-2($color:  white) {
   font-size: 60px;
   line-height: 86px;
   font-weight: bold;
   color: $color;
 }
 
-@mixin headings-3($color: $white) {
+@mixin headings-3($color:  white) {
   font-size: 30px;
   line-height: 43px;
   font-weight: bold;
   color: $color;
 }
 
-@mixin headings-4($color: $white) {
+@mixin headings-4($color:  white) {
   font-size: 24px;
   line-height: 34px;
   font-weight: bold;
@@ -40,12 +41,12 @@ Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 24px;
 }
 
-@mixin large-text($color: $white) {
+@mixin large-text($color: white) {
   @extend %large;
   color: $color;
 }
 
-@mixin large-text-bold($color: $white) {
+@mixin large-text-bold($color: white) {
   @extend %large;
   font-weight: bold;
   color: $color;
@@ -56,13 +57,28 @@ Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 20px;
 }
 
-@mixin medium-text($color: $white) {
+@mixin medium-text($color: white) {
   @extend %medium;
   color: $color;
 }
 
-@mixin medium-text-bold($color: $white) {
+@mixin medium-text-bold($color: white) {
   @extend %medium;
+  font-weight: bold;
+  color: $color;
+}
+%small {
+  line-height: 25px;
+  font-size: 15px;
+}
+
+@mixin small-text($color: white) {
+  @extend %small;
+  color: $color;
+}
+
+@mixin small-text-bold($color: white) {
+  @extend %small;
   font-weight: bold;
   color: $color;
 }

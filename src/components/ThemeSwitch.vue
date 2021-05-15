@@ -38,6 +38,8 @@ export default {
   width: 120px;
   box-sizing: border-box;
   display: flex;
+  position: absolute;
+  top: 10px;
 }
 
 .light-toggle {

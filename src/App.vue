@@ -24,6 +24,12 @@ export default {
 }
 body {
   background: $dark-blue;
+  margin: 0;
+}
+
+line, text {
+  stroke: $light-gray;
+  opacity: 0.2;
 }
 
 #app {
@@ -31,9 +37,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: $white;
+  color: $page-highlighted;
   // background: $dark-blue;
-  height: 100vh;
+  height: 200vh;
 }
 
 h1 {
@@ -43,14 +49,16 @@ h1 {
 p {
   @include large-text;
 }
-
+a {
+  text-decoration: none;
+}
 // theme
 .light-background {
   background-color: $light-gray;
 }
 
 .light-text {
-  color: $white;
+  color: $page-highlighted;
 }
 
 .dark-background {
