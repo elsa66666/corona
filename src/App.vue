@@ -26,12 +26,10 @@ body {
   background: $dark-blue;
   margin: 0;
 }
-
-line, text {
-  stroke: $light-gray;
-  opacity: 0.2;
+line {
+  stroke: $dark-gray;
+  opacity: 0.4;
 }
-
 #app {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
   -webkit-font-smoothing: antialiased;

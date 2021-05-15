@@ -147,6 +147,20 @@
           <!-- chart1 -->
           <apexchart type="line" height="350" :options="chartOptions2"
                      :series="series2"></apexchart>
+          <div id="wrapper">
+            <div id="chart-line1">
+              <apexchart type="line" height="160" :options="chartOptionsLine1" :series="seriesLine1"></apexchart>
+            </div>
+            <div id="chart-line2">
+              <apexchart type="line" height="160" :options="chartOptionsLine2" :series="seriesLine2"></apexchart>
+            </div>
+            <div id="chart-line3">
+              <apexchart type="line" height="160" :options="chartOptionsLine3" :series="seriesLine3"></apexchart>
+            </div>
+            <div id="chart-line4">
+              <apexchart type="line" height="160" :options="chartOptionsLine4" :series="seriesLine4"></apexchart>
+            </div>
+          </div>
         </div>
 
       </el-container>
@@ -212,7 +226,6 @@ export default {
           categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
         }
       },
-
       series2: [{
         name: 'TEAM A',
         type: 'column',
@@ -249,15 +262,9 @@ export default {
           position: 'top'
         },
         grid: {
-          xaxis: {
-            lines: {
-              show: false
-            }
-          },
-          yaxis: { // 横着的线
-            lines: {
-              show: true
-            }
+          column: {
+            colors: undefined,
+            opacity: 0.5
           }
         },
         fill: {
@@ -278,13 +285,26 @@ export default {
           size: 0.5
         },
         xaxis: {
-          type: 'datetime'
+          type: 'datetime',
+          labels: {
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)',
+                'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)',
+                'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)',
+                'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)',
+                'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)',
+                'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
         },
         yaxis: {
-          title: {
-            text: 'Points'
-          },
-          min: 0
+          text: 'Points',
+          labels: {
+            minWidth: 40,
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
         },
         tooltip: {
           theme: 'dark',
@@ -296,6 +316,208 @@ export default {
                 return y.toFixed(0) + 'points'
               }
               return y
+            }
+          }
+        }
+      },
+
+      // sync chart
+      seriesLine1: [{
+        data: ['11 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017']
+      }],
+      chartOptionsLine1: {
+        chart: {
+          id: 'fb',
+          group: 'social',
+          type: 'line',
+          height: 160
+        },
+        colors: ['#c6322e'],
+        title: {
+          text: 'Confirmed',
+          align: 'left',
+          style: {
+            fontSize: '14px',
+            fontWeight: 'bold',
+            fontFamily: '-apple-system',
+            color: '#c6322e'
+          }
+        },
+        tooltip: {
+          theme: 'dark'
+        },
+        stroke: {
+          width: [2],
+          curve: 'smooth'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '20%'
+          }
+        },
+        xaxis: {
+          labels: {
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
+        },
+        yaxis: {
+          labels: {
+            minWidth: 40,
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
+        }
+      },
+
+      seriesLine2: [{
+        data: ['11 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017']
+      }],
+      chartOptionsLine2: {
+        chart: {
+          id: 'fb',
+          group: 'social',
+          type: 'line',
+          height: 160
+        },
+        colors: ['#9d9c9e'],
+        title: {
+          text: 'Fatal',
+          align: 'left',
+          style: {
+            fontSize: '14px',
+            fontWeight: 'bold',
+            fontFamily: '-apple-system',
+            color: '#9d9c9e'
+          }
+        },
+        stroke: {
+          width: [2],
+          curve: 'smooth'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '20%'
+          }
+        },
+        tooltip: {
+          theme: 'dark'
+        },
+        xaxis: {
+          labels: {
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
+        },
+        yaxis: {
+          labels: {
+            minWidth: 40,
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
+        }
+      },
+
+      seriesLine3: [{
+        data: ['12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017']
+      }],
+      chartOptionsLine3: {
+        chart: {
+          id: 'fb',
+          group: 'social',
+          type: 'line',
+          height: 160
+        },
+        colors: ['#5672a0'],
+        title: {
+          text: 'Infected',
+          align: 'left',
+          style: {
+            fontSize: '14px',
+            fontWeight: 'bold',
+            fontFamily: '-apple-system',
+            color: 'rgb(86,114,160)'
+          }
+        },
+        stroke: {
+          width: [2],
+          curve: 'smooth',
+          color: '#f0f3f5'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '20%'
+          }
+        },
+        tooltip: {
+          theme: 'dark'
+        },
+        xaxis: {
+          labels: {
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
+        },
+        yaxis: {
+          labels: {
+            minWidth: 40,
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
+        }
+      },
+
+      seriesLine4: [{
+        data: ['12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017', '12 Feb 2017']
+      }],
+      chartOptionsLine4: {
+        chart: {
+          id: 'tw',
+          group: 'social',
+          type: 'line',
+          height: 160
+        },
+        colors: ['#86a373'],
+        title: {
+          text: 'Recovered',
+          align: 'left',
+          style: {
+            fontSize: '14px',
+            fontWeight: 'bold',
+            fontFamily: '-apple-system',
+            color: 'rgb(134,163,115)'
+          }
+        },
+        stroke: {
+          width: [2],
+          curve: 'smooth'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '20%'
+          }
+        },
+        tooltip: {
+          theme: 'dark'
+        },
+        xaxis: {
+          labels: {
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
+            }
+          }
+        },
+        yaxis: {
+          labels: {
+            minWidth: 40,
+            style: {
+              colors: ['rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)', 'rgba(240,243,245,0.5)']
             }
           }
         }
@@ -380,7 +602,7 @@ export default {
 
 .home{
   width: 100%;
-  height: 200vh;
+  height: 100vh;
 }
 .gray-back {
   background: rgba(255, 255, 255, 0.05)
