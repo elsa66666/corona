@@ -165,6 +165,13 @@
 
       </el-container>
     </el-container>
+
+    <el-container style="width: 100%; height: 200px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center" >
+      <label style="font-weight: 600; line-height: 80px; color: white">We stand with everyone fighting on the frontline.</label>
+      <label style="font-size: 14px">Designed by WHU Corona Team</label>
+    </el-container>
   </div>
 </template>
 
