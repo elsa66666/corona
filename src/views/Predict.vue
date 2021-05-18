@@ -127,7 +127,7 @@
             </div>
           </div>
 
-          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600;margin-top: 50px"> Data predicted for the next 7 days</label>
+          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600;margin-top: 50px"> Data predicted for the next 7 days using OUR MODEL</label>
           <!-- 数据表格 -->
           <el-container
             style="display: flex;
