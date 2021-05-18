@@ -1,5 +1,5 @@
 <template>
-  <div class="home" :class="{'light-background': !isDarkMode, 'dark-background': isDarkMode}">
+  <div class="predict" :class="{'light-background': !isDarkMode, 'dark-background': isDarkMode}">
     <Header></Header>
     <el-container class="top-switch-container">
       <ThemeSwitch></ThemeSwitch>
@@ -10,7 +10,7 @@
       <el-container class="left-container">
         <el-container class="search-container">
           <label class="search-label"
-                 :class="{'search-label-light': isDarkMode, 'search-label-dark': !isDarkMode}">select a country to analyse</label>
+                 :class="{'search-label-light': isDarkMode, 'search-label-dark': !isDarkMode}">select a country to predict</label>
           <div class="search-box">
             <el-select v-model="country" placeholder="">
               <el-option
@@ -63,7 +63,7 @@
         </el-container>
 
         <div class="cards">
-          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600"> Total for last 7 days</label>
+          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600"> Predictions for the next 7 days</label>
           <div class="card1" :class="{'light-card': !isDarkMode, 'dark-card': isDarkMode}" >
             <div style="display: flex;
                   flex-direction: row;
@@ -127,7 +127,7 @@
             </div>
           </div>
 
-          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600;margin-top: 50px"> Data for last 7 days</label>
+          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600;margin-top: 50px"> Data predicted for the next 7 days</label>
           <!-- 数据表格 -->
           <el-container
             style="display: flex;
@@ -176,7 +176,7 @@
         <div class="chart1">
           <!-- title and toggle -->
           <div class="chart-title-div">
-            <label class="chart-title">Latest 7 days Overview</label>
+            <label class="chart-title">Prediction for the next 7 days</label>
           </div>
 
           <!-- chart1 -->
@@ -221,7 +221,7 @@ import Header from '@/components/Header'
 import VueApexCharts from 'vue-apexcharts'
 import axios from 'axios'
 export default {
-  name: 'Home',
+  name: 'Predict',
   components: {
     Header,
     ThemeSwitch,
@@ -654,9 +654,9 @@ export default {
     selectNewDate () { // 选择新日期
       var index1 = 0
       if (this.init1 === true) {
-        index1 = this.getSelectedDateIndex('"2021-05-04"') - 6
+        index1 = this.getSelectedDateIndex('"2021-05-04"')
       } else {
-        index1 = this.getSelectedDateIndex(this.dateSelected.toString()) - 6 // 起始日期的索引
+        index1 = this.getSelectedDateIndex(this.dateSelected.toString()) // 起始日期的索引
       }
       // console.log(index1)
       // last 7 list

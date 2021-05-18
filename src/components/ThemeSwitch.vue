@@ -1,5 +1,5 @@
 <template>
-  <div @click="toggleDarkMode" class="toggle"
+  <div class="toggle"
         :class="{'light-toggle': !isDarkMode, 'dark-toggle':isDarkMode}">
     <div class="toggle-switch"
          :class="{'toggle-left' : !isDarkMode, 'toggle-right': isDarkMode}">

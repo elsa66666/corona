@@ -3,7 +3,7 @@
     <div class="nav-1" :class="{'nav-light': !isDarkMode, 'nav-dark': isDarkMode}">
       <label class="title1">Corona</label>
       <router-link to="/">Home</router-link>
-      <router-link to="/model">Model</router-link>
+      <router-link to="/Predict">Predict</router-link>
     </div>
   </div>
 </template>
