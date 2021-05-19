@@ -127,7 +127,7 @@
             </div>
           </div>
 
-          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600;margin-top: 50px"> Data predicted for the next 7 days using OUR MODEL</label>
+          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600;margin-top: 50px"> Data predicted for the next 7 days</label>
           <!-- 数据表格 -->
           <el-container
             style="display: flex;
@@ -176,7 +176,7 @@
         <div class="chart1">
           <!-- title and toggle -->
           <div class="chart-title-div">
-            <label class="chart-title">Prediction for the next 7 days</label>
+            <label class="chart-title">Prediction for the next 7 days using αSIR-F</label>
           </div>
 
           <!-- chart1 -->
@@ -205,7 +205,7 @@
     display: flex; flex-direction: column;
     justify-content: center; align-items: center" >
       <label style="font-weight: 600; line-height: 80px; color: white">We stand with everyone fighting on the frontline.</label>
-      <label style="font-size: 14px">Designed by WHU Corona Team</label>
+      <label style="font-size: 14px">Designed by Team-2021041632</label>
     </el-container>
   </div>
 </template>

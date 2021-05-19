@@ -205,7 +205,7 @@
     display: flex; flex-direction: column;
     justify-content: center; align-items: center" >
       <label style="font-weight: 600; line-height: 80px; color: white">We stand with everyone fighting on the frontline.</label>
-      <label style="font-size: 14px">Designed by WHU Corona Team</label>
+      <label style="font-size: 14px">Designed by Team-2021041632</label>
     </el-container>
   </div>
 </template>
