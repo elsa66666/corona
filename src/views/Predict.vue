@@ -33,38 +33,15 @@
               <label>GO</label>
             </div>
           </div>
-          <el-container style=
-                          "width: 100%;
-                          background: rgba(255,255,255,0.1);
-                          border-radius: 10px;
-                          margin-top: 40px;
-                          margin-bottom: 20px;
-                          display: flex;
-                          flex-direction: column;
-                          justify-content: center;
-                          align-items: center;
-">
-            <el-container style="width: 100%;justify-content: center;align-items: center;height: 40px;">
-              <label style="color: rgba(255,255,255,0.7);margin-right: 10%;font-size: 18px;font-weight: 600;">Australia</label>
-              <label style="color: rgba(255,255,255,0.7);margin-right: 10%;font-size: 18px;font-weight: 600;">Brazil</label>
-              <label style="color: rgba(255,255,255,0.7);font-size: 18px;font-weight: 600;">Canada</label>
-            </el-container>
-            <el-container style="width: 100%;justify-content: center;align-items: center;height: 40px;">
-              <label style="color: rgba(255,255,255,0.7);margin-right: 10%;font-size: 18px;font-weight: 600;">France</label>
-              <label style="color: rgba(255,255,255,0.7);margin-right: 10%;font-size: 18px;font-weight: 600;">Iceland</label>
-              <label style="color: rgba(255,255,255,0.7);font-size: 18px;font-weight: 600;">India</label>
-            </el-container>
-            <el-container style="width: 100%;justify-content: center;align-items: center;height: 40px;">
-              <label style="color: rgba(255,255,255,0.7);margin-right: 10%;font-size: 18px;font-weight: 600;">South Africa</label>
-              <label style="color: rgba(255,255,255,0.7);margin-right: 10%;font-size: 18px;font-weight: 600;">Poland</label>
-              <label style="color: rgba(255,255,255,0.7);font-size: 18px;font-weight: 600;">Italy</label>
-            </el-container>
-          </el-container>
         </el-container>
 
-        <div class="cards">
-          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600"> Predictions for the next 7 days</label>
+        <div class="cards" style="margin-top: 40px">
           <div class="card1" :class="{'light-card': !isDarkMode, 'dark-card': isDarkMode}" >
+            <label style="line-height: 40px;
+          color: rgba(255,255,255,0.3);
+          font-weight: 600;">
+              Predictions for the next 7 days:
+            </label>
             <div style="display: flex;
                   flex-direction: row;
                   justify-content: center;
@@ -127,7 +104,50 @@
             </div>
           </div>
 
-          <label style="line-height: 40px; color: rgba(255,255,255,0.3); font-weight: 600;margin-top: 50px"> Data predicted for the next 7 days</label>
+          <el-container
+            style="display: flex;
+            flex-direction: column;
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+            background-color: #5b6175;
+            height: 100px;
+            box-shadow: 5px 5px 18px rgba(255,255,255,0.15);
+            margin-top: 30px;
+            border-radius: 20px;
+          ">
+            <label style="line-height: 40px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 600;
+            ">
+              Recommendation for epidemic control measures:
+            </label>
+            <label style="line-height: 40px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;margin-top: 5px;
+            font-size: xx-large;
+            ">
+              LOCKDOWN
+            </label>
+          </el-container>
+
+          <label style="line-height: 40px;
+          color: rgba(255,255,255,0.3);
+          font-weight: 600;margin-top: 50px;
+          width: 80%">
+            For the day to be analyzed,
+            the prevalence in your chosen region is still on the increase
+            and in the outbreak phase.
+            Therefore, we strongly recommend measures to be taken to block
+            the area in order to control the outbreak and reduce the exponential
+            spread of the epidemic.
+          </label>
+
+          <label style="line-height: 40px;
+          color: rgba(255,255,255,0.3);
+          font-weight: 600;margin-top: 50px">
+            Data predicted for the next 7 days
+          </label>
           <!-- 数据表格 -->
           <el-container
             style="display: flex;
@@ -182,7 +202,11 @@
           <!-- chart1 -->
           <apexchart type="line" height="350" :options="chartOptions2"
                      :series="series2"></apexchart>
-          <div id="wrapper">
+        </div>
+
+        <!-- 下面四个级联chart -->
+        <div id="wrapper" style="width: 100%;
+              justify-content: center;">
             <div id="chart-line1">
               <apexchart type="line" height="160" :options="chartOptionsLine1" :series="seriesLine1"></apexchart>
             </div>
@@ -196,7 +220,6 @@
               <apexchart type="line" height="160" :options="chartOptionsLine4" :series="seriesLine4"></apexchart>
             </div>
           </div>
-        </div>
 
       </el-container>
     </el-container>
@@ -232,6 +255,8 @@ export default {
       country: 'Italy',
       countryOptions: ['Australia', 'Brazil', 'Canada', 'France', 'Iceland', 'India',
         'Italy', 'Poland', 'SouthAfrica'],
+      measure: 'Lockdown',
+      measureOptions: ['no measure', 'lockdown', 'medicine', 'vaccine'],
       init1: true,
       show1: false,
       searchDistrict: '',
@@ -777,7 +802,7 @@ export default {
       // confirmed
       this.seriesLine1 = [{
         data: this.last7ConfirmedList
-      }]
+      }],
       this.chartOptionsLine1 = {
         labels: this.last7dateList,
         chart: {
@@ -799,13 +824,19 @@ export default {
           theme: 'dark'
         },
         stroke: {
-          width: [2],
+          width: [2, 2],
           curve: 'smooth'
         },
         plotOptions: {
           bar: {
             columnWidth: '20%'
           }
+        },
+        legend: {
+          labels: {
+            colors: ['white']
+          },
+          position: 'top'
         },
         xaxis: {
           type: 'datetime',
