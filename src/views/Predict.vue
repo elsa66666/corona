@@ -802,7 +802,7 @@ export default {
       // confirmed
       this.seriesLine1 = [{
         data: this.last7ConfirmedList
-      }],
+      }]
       this.chartOptionsLine1 = {
         labels: this.last7dateList,
         chart: {
