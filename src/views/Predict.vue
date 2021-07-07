@@ -126,22 +126,13 @@
             color: rgba(255,255,255,0.9);
             font-weight: 600;margin-top: 5px;
             font-size: xx-large;
-            ">
-              LOCKDOWN
-            </label>
+            ">{{this.suggestionName}}</label>
           </el-container>
 
           <label style="line-height: 40px;
           color: rgba(255,255,255,0.3);
           font-weight: 600;margin-top: 50px;
-          width: 80%">
-            For the day to be analyzed,
-            the prevalence in your chosen region is still on the increase
-            and in the outbreak phase.
-            Therefore, we strongly recommend measures to be taken to block
-            the area in order to control the outbreak and reduce the exponential
-            spread of the epidemic.
-          </label>
+          width: 80%">{{this.suggestionWords}}</label>
 
           <label style="line-height: 40px;
           color: rgba(255,255,255,0.3);
@@ -252,11 +243,8 @@ export default {
   },
   data () {
     return {
-      country: 'Italy',
-      countryOptions: ['Australia', 'Brazil', 'Canada', 'France', 'Iceland', 'India',
-        'Italy', 'Poland', 'SouthAfrica'],
-      measure: 'Lockdown',
-      measureOptions: ['no measure', 'lockdown', 'medicine', 'vaccine'],
+      country: 'Australia', // 目前搜索栏的国家
+      countryOptions: ['Australia', 'Brazil', 'Canada', 'France'], // 国家列表
       init1: true,
       show1: false,
       searchDistrict: '',
@@ -266,6 +254,12 @@ export default {
       modelFatalList: [],
       modelInfectedList: [],
       modelRecoveredList: [],
+      // suggestions
+      suggestionAllData: [],
+      suggestionDateList: [],
+      suggestionGroupList: [],
+      suggestionName: '',
+      suggestionWords: '',
       // last 7 list
       last7dateList: [],
       last7ConfirmedList: [],
@@ -283,11 +277,12 @@ export default {
       addedInfectedAmount: 0,
       addedRecoveredAmount: 0,
       // date and picker
-      dateSelected: new Date('2021-05-04'),
+      dateSelected: null,
       datePickerOptions: {
         disabledDate (time) {
           const date1 = new Date('2020-04-01')
-          return time.getTime() < date1 || time.getTime() > Date.now()
+          const date2 = new Date('2021-07-01')
+          return time.getTime() < date1 || time.getTime() > date2
         }
       },
       series2: [{
@@ -595,7 +590,7 @@ export default {
   },
   created () {
     axios
-      .get('https://www.fastmock.site/mock/5cbbd84514072b77a738b4c90c503231/corona/italy')
+      .get('https://www.fastmock.site/mock/5cbbd84514072b77a738b4c90c503231/corona/australia')
       .then(res => {
         this.modelAllData = res.data.data.list
         for (var i = 0; i < this.modelAllData.length; i++) {
@@ -605,13 +600,29 @@ export default {
           this.modelInfectedList.push(this.modelAllData[i].Infected)
           this.modelRecoveredList.push(this.modelAllData[i].Recovered)
         }
-        this.dateSelected = new Date('2021-05-04')
-        this.selectNewDate()
-        this.init1 = false
       })
       .catch(error => {
         console.log('There is an error: ' + error.response)
+        // eslint-disable-next-line no-sequences
       })
+    axios
+      .get('https://www.fastmock.site/mock/5cbbd84514072b77a738b4c90c503231/corona/trend/Australia')
+      .then(res => {
+        this.suggestionAllData = res.data.data.list
+        for (var i = 0; i < this.suggestionAllData.length; i++) {
+          this.suggestionDateList.push(this.suggestionAllData[i].Date.toString())
+          this.suggestionGroupList.push(this.suggestionAllData[i].Australia)
+          // console.log(this.suggestionAllData[i].Australia)
+        }
+      })
+      .catch(error => {
+        console.log('There is an error: ' + error.response)
+        // eslint-disable-next-line no-sequences
+      })
+    // this.dateSelected = new Date('2021-07-01')
+    // console.log(this.suggestionAllData)
+    // this.selectNewDate()
+    // this.init1 = false
   },
   computed: {
     isDarkMode () {
@@ -623,6 +634,11 @@ export default {
       console.log(selected1)
       const temp = selected1.substr(1, 10)
       return this.modelDateList.indexOf(temp)
+    },
+    getSelectedDateIndexInSuggestion (selected1) {
+      console.log(selected1)
+      const temp = selected1.substr(1, 10)
+      return this.suggestionDateList.indexOf(temp)
     },
     getListAndAmount (index11) {
       for (var i = index11; i < index11 + 7; i++) {
@@ -655,6 +671,7 @@ export default {
       this.modelFatalList = []
       this.modelInfectedList = []
       this.modelRecoveredList = []
+      this.selectNewCountry1()
       // this.init1 = true
       console.log(url11)
       axios.get(url11)
@@ -676,14 +693,102 @@ export default {
           console.log('There is an error: ' + error.response)
         })
     },
+    selectNewCountry1 () {
+      console.log('get new suggestion')
+      const url1 = 'https://www.fastmock.site/mock/5cbbd84514072b77a738b4c90c503231/corona/trend/' + this.country
+      const url11 = encodeURI(url1)
+
+      this.suggestionAllData = []
+      this.suggestionDateList = []
+      this.suggestionGroupList = []
+      // this.init1 = true
+      console.log(url11)
+      axios.get(url11)
+        .then(res => {
+          this.suggestionAllData = res.data.data.list
+          if (this.country === 'Australia') {
+            for (var i = 0; i < this.suggestionAllData.length; i++) {
+              this.suggestionDateList.push(this.suggestionAllData[i].Date.toString())
+              this.suggestionGroupList.push(this.suggestionAllData[i].Australia)
+              // console.log(this.suggestionAllData[i].Australia)
+            }
+          } else if (this.country === 'Brazil') {
+            for (var i2 = 0; i2 < this.suggestionAllData.length; i2++) {
+              this.suggestionDateList.push(this.suggestionAllData[i2].Date.toString())
+              this.suggestionGroupList.push(this.suggestionAllData[i2].Brazil)
+              // console.log(this.suggestionAllData[i].Australia)
+            }
+          } else if (this.country === 'Canada') {
+            for (var i3 = 0; i3 < this.suggestionAllData.length; i3++) {
+              this.suggestionDateList.push(this.suggestionAllData[i3].Date.toString())
+              this.suggestionGroupList.push(this.suggestionAllData[i3].Canada)
+              // console.log(this.suggestionAllData[i].Australia)
+            }
+          } else if (this.country === 'France') {
+            for (var i4 = 0; i4 < this.suggestionAllData.length; i4++) {
+              this.suggestionDateList.push(this.suggestionAllData[i4].Date.toString())
+              this.suggestionGroupList.push(this.suggestionAllData[i4].France)
+              // console.log(this.suggestionAllData[i].Australia)
+            }
+          } else if (this.country === 'Iceland') {
+            for (var i5 = 0; i < this.suggestionAllData.length; i5++) {
+              this.suggestionDateList.push(this.suggestionAllData[i5].Date.toString())
+              this.suggestionGroupList.push(this.suggestionAllData[i5].Iceland)
+              console.log(this.suggestionAllData[i5].Iceland)
+            }
+          } else if (this.country === 'India') {
+            for (var i6 = 0; i < this.suggestionAllData.length; i6++) {
+              this.suggestionDateList.push(this.suggestionAllData[i6].Date.toString())
+              this.suggestionGroupList.push(this.suggestionAllData[i6].India)
+              // console.log(this.suggestionAllData[i].Australia)
+            }
+          } else if (this.country === 'Poland') {
+            for (var i7 = 0; i < this.suggestionAllData.length; i7++) {
+              this.suggestionDateList.push(this.suggestionAllData[i7].Date.toString())
+              this.suggestionGroupList.push(this.suggestionAllData[i7].Poland)
+              // console.log(this.suggestionAllData[i].Australia)
+            }
+          }
+        })
+        .catch(error => {
+          console.log('There is an error: ' + error.response)
+        })
+    },
     selectNewDate () { // 选择新日期
       var index1 = 0
+      var suggestIndex = 0
       if (this.init1 === true) {
-        index1 = this.getSelectedDateIndex('"2021-05-04"')
+        index1 = this.getSelectedDateIndex('"2021-07-01"')
+        suggestIndex = this.getSelectedDateIndexInSuggestion('"2021-07-01"')
       } else {
         index1 = this.getSelectedDateIndex(this.dateSelected.toString()) // 起始日期的索引
+        suggestIndex = this.getSelectedDateIndexInSuggestion(this.dateSelected.toString())
       }
-      // console.log(index1)
+      console.log('增长率：', this.suggestionGroupList[suggestIndex])
+      // get suggestion
+      if (Number(this.suggestionGroupList[suggestIndex]) > 1) {
+        this.suggestionName = 'LOCKDOWN'
+        this.suggestionWords = 'For the day to be analyzed,' +
+          'the prevalence in your chosen region is still on the increase ' +
+          'and in the outbreak phase. ' +
+          'Therefore, we strongly recommend measures to be taken to block ' +
+          'the area in order to control the outbreak and reduce the exponential ' +
+          'spread of the epidemic.'
+        // eslint-disable-next-line eqeqeq
+      } else if (Number(this.suggestionGroupList[suggestIndex]) == 1) {
+        this.suggestionName = 'VACCINE'
+        this.suggestionWords = 'For the day to be analyzed, ' +
+          'the prevalence in your chosen region is static. ' +
+          'Therefore, we strongly recommend measures to be taken to take vaccine ' +
+          'in order to slow down the trend and reduce the exponential ' +
+          'spread of the epidemic.'
+      } else {
+        this.suggestionName = 'MEDICINE'
+        this.suggestionWords = 'For the day to be analyzed, ' +
+          'the prevalence in your chosen region gets controlled. ' +
+          'Therefore, we strongly recommend measures to be taken to use medicine to cure and protect your people ' +
+          'in order to reduce the chances of more people getting infected.'
+      }
       // last 7 list
       this.last7dateList = []
       this.last7ConfirmedList = []

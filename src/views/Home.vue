@@ -57,7 +57,6 @@
             <el-container style="width: 100%;justify-content: center;align-items: center;height: 40px;">
               <label style="color: rgba(255,255,255,0.7);margin-right: 10%;font-size: 18px;font-weight: 600;">South Africa</label>
               <label style="color: rgba(255,255,255,0.7);margin-right: 10%;font-size: 18px;font-weight: 600;">Poland</label>
-              <label style="color: rgba(255,255,255,0.7);font-size: 18px;font-weight: 600;">Italy</label>
             </el-container>
           </el-container>
         </el-container>
@@ -230,9 +229,9 @@ export default {
   },
   data () {
     return {
-      country: 'Italy',
+      country: 'Australia',
       countryOptions: ['Australia', 'Brazil', 'Canada', 'France', 'Iceland', 'India',
-        'Italy', 'Poland', 'SouthAfrica'],
+        'Poland', 'SouthAfrica'],
       init1: true,
       show1: false,
       searchDistrict: '',
@@ -259,11 +258,12 @@ export default {
       addedInfectedAmount: 0,
       addedRecoveredAmount: 0,
       // date and picker
-      dateSelected: new Date('2021-05-04'),
+      dateSelected: new Date('2021-07-06'),
       datePickerOptions: {
         disabledDate (time) {
           const date1 = new Date('2020-04-01')
-          return time.getTime() < date1 || time.getTime() > Date.now()
+          const date2 = new Date('2021-07-06')
+          return time.getTime() < date1 || time.getTime() > date2
         }
       },
       series2: [{
@@ -571,7 +571,7 @@ export default {
   },
   created () {
     axios
-      .get('https://www.fastmock.site/mock/5cbbd84514072b77a738b4c90c503231/corona/italy')
+      .get('https://www.fastmock.site/mock/5cbbd84514072b77a738b4c90c503231/corona/Australia')
       .then(res => {
         this.modelAllData = res.data.data.list
         for (var i = 0; i < this.modelAllData.length; i++) {
@@ -581,7 +581,7 @@ export default {
           this.modelInfectedList.push(this.modelAllData[i].Infected)
           this.modelRecoveredList.push(this.modelAllData[i].Recovered)
         }
-        this.dateSelected = new Date('2021-05-04')
+        this.dateSelected = new Date('2021-07-06')
         this.selectNewDate()
         this.init1 = false
       })
@@ -655,7 +655,7 @@ export default {
     selectNewDate () { // 选择新日期
       var index1 = 0
       if (this.init1 === true) {
-        index1 = this.getSelectedDateIndex('"2021-05-04"') - 6
+        index1 = this.getSelectedDateIndex('"2021-07-06"') - 6
       } else {
         index1 = this.getSelectedDateIndex(this.dateSelected.toString()) - 6 // 起始日期的索引
       }
