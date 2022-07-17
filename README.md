@@ -33,7 +33,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 npm install less --save-dev
 ```
 
-- Less-loader:注意安装7.3.0版本，否则因为版本抬高，与vue版本不兼容而报错
+- Less-loader:注意安装7.3.0版本，否则因为版本太高，与vue版本不兼容而报错
 
 ```
 npm i less-loader@7.3.0
